@@ -3,9 +3,9 @@
 from PIL import Image
 import requests,io
 
-image_bytes = io.BytesIO(requests.get("https://vhq.connect.verifone.com/vhqDeviceUploadedFiles/naadc-prod/347-253-792_210625_061734-screen_cap.png").content)
+image_bytes = io.BytesIO(requests.get("IMAGE_PATH").content)
 
-image_bytes1 = io.BytesIO(requests.get("https://vhq.connect.verifone.com/vhqDeviceUploadedFiles/naadc-prod/347-253-792_210625_062108-screen_cap.png").content)
+image_bytes1 = io.BytesIO(requests.get("IMAGE_PATH").content)
 
 i1 = Image.open(image_bytes)
 i2 = Image.open(image_bytes1)
