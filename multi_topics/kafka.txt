@@ -1,0 +1,30 @@
+To see a list of existing topics 
+./bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+delete existing topics
+./bin/kafka-topics.sh --delete --topic topic_name --bootstrap-server localhost:9092
+
+create new topic
+./bin/kafka-topics.sh --create --topic new-topic-name --partitions 3 --replication-factor 1 --bootstrap-server localhost:9092
+
+
+
+
+###################################################################################################################################
+
+
+
+Start zookeeper
+./bin/zookeeper-server-start.sh config/zookeeper.properties 
+
+Start kafka server
+./bin/kafka-server-start.sh config/server.properties
+
+Create topic
+./bin/kafka-topics.sh --create --topic topic_name --partitions 3 --replication-factor 1 --bootstrap-server localhost:9092
+
+Create consumer
+./bin/kafka-console-consumer.sh --topic topic_name --from-beginning --bootstrap-server localhost:9092
+
+Create producer
+./bin/kafka-console-producer.sh --topic topic_name --bootstrap-server localhost:9092
