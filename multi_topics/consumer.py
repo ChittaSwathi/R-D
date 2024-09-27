@@ -2,7 +2,7 @@ from confluent_kafka import Consumer, KafkaError
 import csv
 import os
 from datetime import datetime
-csv_file = "nasdaq.csv"
+import json
 
 conf = {
  'bootstrap.servers': 'localhost:9092', 
@@ -25,8 +25,11 @@ while True:
         else:
             print(f'Error: {msg.error()}')
     else:
-        print(f'received {msg.value().decode("utf-8")}')
-        data_price = [(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), msg.value().decode("utf-8"))]
+        decoded_msg = json.loads(msg.value().decode("utf-8"))
+        print(f'received {decoded_msg}')
+        csv_file = decoded_msg["stock"]+'.csv'
+        
+        data_price = [(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), decoded_msg['price'])]
     
         if not os.path.exists(csv_file):
             with open(csv_file, mode="w", newline="") as file:
